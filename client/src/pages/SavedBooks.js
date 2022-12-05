@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 
-import { getMe, deleteBook } from '../utils/API';
+import { GET_SELF } from '../utils/queries';
+import { REMOVE_BOOK } from '../utils/mutations';
+
+// import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
