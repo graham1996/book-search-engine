@@ -3,12 +3,18 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
+
+// originally used these imports as they were listed in the apollo documentation, it seems theyre out of date and were the source of my issues, had to redo with new import statements
+
 // https://www.apollographql.com/docs/react/v2/get-started/
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
-// https://www.apollographql.com/docs/react/v2/api/apollo-client/
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
+// import ApolloClient from 'apollo-boost';
+// import { ApolloProvider } from '@apollo/react-hooks';
+// // https://www.apollographql.com/docs/react/v2/api/apollo-client/
+// import { InMemoryCache } from 'apollo-cache-inmemory';
+// import { HttpLink } from 'apollo-link-http';
+
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client'
+
 import { setContext } from '@apollo/client/link/context';
 
 const authLink = setContext((_, { headers }) => {
@@ -22,7 +28,7 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const httpLink = HttpLink({
+const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
